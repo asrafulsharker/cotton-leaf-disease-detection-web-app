@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Image Classification</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body style="font-family: 'Work Sans', sans-serif;">
+
+  <!-- nav start  -->
+  <nav class="w-full z-50 bg-[#94f8873f]">
+    <div class="navbar  text-black rounded mx-auto  container flex-wrap">
+      <div class="flex-1 justify-center lg:justify-start">
+        <a class="normal-case text-3xl font-bold curs cursor-pointer text-black text-center" href="#">Cotton Leaf</a>
+      </div>
+      <div class="flex-none ">
+        <ul class="menu menu-horizontal px-1 ">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#ditect">Ditect Now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- nav end  -->
+
+  <!-- hero section start  -->
+
+  <div class="hero h-screen bg-[#94f8873f]">
+    <div class="container">
+      <div class="top_title_part flex flex-col items-center justify-center">
+        <p class="text-[62px] text-center font-bold font-sans leading-[3.5rem] mb-2">
+          Cotton Leaf Disease Detection: <br> Advanced Solutions for Healthier Crops
+        </p>
+        <p class="text-center mt-3 text-[16px]">
+          "Transform Your Cotton Farming: Discover Our Innovative Cotton Disease Detection Technology for Better Crop Health and Higher Yields. <br> Start Your Journey to Sustainable Cotton Farming Today."
+        </p>
+        <a href="#ditect" class="btn bg-[#8cd200] text-white mt-5">Detect Now</a>
+        <img class="w-[60%] rounded-md mt-6" src="../static/cover.webp" alt="Cotton Farming">
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- hero section end  -->
+
+
+
+  <!-- ditection part start  -->
+
+  <div class=" flex items-center justify-center h-screen p-3" id="ditect" >
+    <div class=" lg:w-[80%]">
+      <div class="flex flex-wrap">
+        <div class="flex-1 flex flex-col justify-center items-center ml-5">
+          <p class="text-4xl font-bold">Upload & check <span class="text-[#8cd200]">Cotton Disease</span>...</p>
+          <form class="form-horizontal flex flex-col flex-wrap" action="/submit" method="post" enctype="multipart/form-data">
+            <input type="file" class="file-input file-input-bordered mt-3 form-control" accept="image/*" capture="camera" name="my_image" id="cameraImage" />
+            <button class="btn bg-[#8cd200] text-white mt-3" type="submit">Submit</button>
+            <button class="btn bg-[#8cd200] text-white mt-3" type="button" id="captureButton">Capture Image</button>
+        </form>
+        </div>
+        <div class="flex-1 flex items-center justify-center">
+          <img src="../static/mid.webp" class="w-full rounded-md flex-1" alt="">
+        </div>
+        
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ditection part end  -->
+
+
+  <!-- ditection part -->
+  {% if predicted_class_info %}
+  <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 20px 80px 130px 80px;">
+      <!-- Left Side: Image -->
+      <div style="flex: 1; padding-right: 20px; text-align: center;">
+          <img src="{{ url_for('static', filename=img_path) }}" alt="Prediction Image" style="max-width: 80%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: transform 0.3s; align-items: center; justify-content: center;">
+      </div>
+      
+      <!-- Right Side: Prediction Info, Confidence, and Suggestions -->
+      <div style="flex: 1; padding-left: 20px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
+          <!-- Prediction Title -->
+          <div style="background-color: #ffa513; color: white; padding: 10px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); text-align: center; font-size: 24px; margin-bottom: 20px;">
+              <h2>Predicted Disease: <i>{{ predicted_class_info.name }}</i></h2>
+          </div>
+          
+          <!-- Prediction Description -->
+          <div style="background-color: #000; color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); margin-bottom: 20px;">
+              <h3 style="font-size: 24px; font-weight: bold;">{{ predicted_class_info.name }}!</h3>
+              <p style="font-size: 16px; line-height: 1.5;">{{ predicted_class_info.description }}</p>
+          </div>
+          
+          <!-- Confidence Level -->
+          <div style="background-color: #4BB543; color: white; padding: 10px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); text-align: center; font-size: 22px; margin-bottom: 20px;">
+              <h3>Confidence: {{ confidence }}%</h3>
+          </div>
+          
+          <!-- Farmer Suggestion -->
+          <div style="background-color: #17a2b8; color: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); font-size: 18px;">
+              <h3 style="font-size: 20px; font-weight: bold;">Suggestion:</h3>
+              <p style="font-size: 16px; line-height: 1.5;">{{ suggestion }}</p>
+          </div>
+      </div>
+  </div>
+  {% endif %}
+  
+
+  
+
+  <!-- ditecttioin part end  -->
+
+
+
+
+
+
+  </div>
+
+
+<div class="flex items-center justify-center bg-black text-white">
+  <footer class="footer p-10  text-base-content container">
+    <div>
+      <span class="footer-title text-white">Important Links</span> 
+      <a class="link link-hover text-white" href="#ditect">Ditect Now</a> 
+      <a class="link link-hover text-white">Coming Soon</a> 
+      <a class="link link-hover text-white">Coming Soon</a> 
+      <a class="link link-hover text-white">Coming Soon</a>
+    </div> 
+    <div>
+      <span class="footer-title text-white">Important Links</span> 
+      <a class="link link-hover text-white">About us</a> 
+      <a class="link link-hover text-white" >Contact</a> 
+      <a class="link link-hover text-white">Coming Soon</a> 
+      <a class="link link-hover text-white">Coming Soon</a>
+    </div> 
+    <div>
+      <span class="footer-title text-white">Legal</span> 
+      <a class="link link-hover text-white">Terms of use</a> 
+      <a class="link link-hover text-white">Privacy policy</a> 
+      <a class="link link-hover text-white">Cookie policy</a>
+    </div>
+  </footer> 
+</div>
+  <footer class="footer px-10 py-4 border-t bg-black text-base-content border-base-300 flex items-center justify-center">
+    <div class="container ">
+      <div class="items-center grid-flow-col text-white">
+        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" class="fill-current"><path d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path></svg>
+        <p class="text-white">Green Leaf <br/>Providing reliable tech since 2023</p>
+      </div> 
+      <div class="md:place-self-center md:justify-self-end">
+        <div class="grid grid-flow-col gap-4">
+          <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current text-white"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg></a> 
+          <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current text-white"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path></svg></a>
+          <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current text-white"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Capture Image button click event
+        $("#captureButton").click(function () {
+            // Trigger the file input's click event to open the device's camera
+            $("#cameraImage").trigger("click");
+        });
+    });
+</script>
+</body>
+
+</html>
