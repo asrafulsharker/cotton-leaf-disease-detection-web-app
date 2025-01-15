@@ -1,16 +1,15 @@
-from flask import Flask, render_template, request, url_for
+# Import necessary libraries
+from flask import Flask, render_template, request
 from keras.models import load_model
 from keras.preprocessing import image
-from keras.preprocessing.image import load_img, img_to_array
-from keras.applications.vgg16 import preprocess_input
-from keras.applications.inception_v3 import InceptionV3, preprocess_input
-
+from keras.applications.resnet50 import preprocess_input as preprocess_input_resnet
+from keras.applications.mobilenet_v2 import preprocess_input as preprocess_input_mobileV2
 import numpy as np
-import os  
-
+import os
+import tensorflow as tf
+print(tf.__version__)
 
 app = Flask(__name__)
-
 
 dic = {
     0: {
@@ -76,28 +75,28 @@ dic = {
 }
 
 
+model = load_model('merged_model.h5')  # Load your merged model here
 
+def preprocess_image(img_path):
+    img = image.load_img(img_path, target_size=(224, 224))
+    img_resnet = image.img_to_array(img)
+    img_resnet = np.expand_dims(img_resnet, axis=0)
+    img_resnet = preprocess_input_resnet(img_resnet)
 
+    img_mobileV2 = image.img_to_array(img)
+    img_mobileV2 = np.expand_dims(img_mobileV2, axis=0)
+    img_mobileV2 = preprocess_input_mobileV2(img_mobileV2)
 
-
-model = load_model('cotton_disease_vgg16.h5')
-
-model.make_predict_function()
+    # Assuming the model takes two inputs
+    return [img_resnet, img_mobileV2]
 
 def predict_label_with_description(img_path):
-    i = load_img(img_path, target_size=(224, 224))  # Adjust to the size the model was trained with
-    i = img_to_array(i)
-    i = np.expand_dims(i, axis=0)
-    i = preprocess_input(i)
-    p = model.predict(i)
+    images = preprocess_image(img_path)
+    p = model.predict(images)  # This should work if model is designed for multiple inputs
     predicted_class_index = np.argmax(p)
     predicted_class_info = dic[predicted_class_index]
     confidence = p[0][predicted_class_index] * 100
-    suggestion = predicted_class_info['suggestion']  # Get suggestion based on the class
-    return predicted_class_info, confidence, suggestion
-
-
-
+    return predicted_class_info, confidence
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -106,22 +105,18 @@ def main():
 
 @app.route("/about")
 def about_page():
-    return "Dragon FruitHarvest Master Your Ultimate Guide to Perfectly Timed Harvesting and Maturity Detection"
+    return "Cotton FruitHarvest Master Your Ultimate Guide to Perfectly Timed Harvesting and Maturity Detection"
 
-@app.route("/submit", methods=["GET", "POST"])
+@app.route("/submit", methods=["POST"])
 def get_output():
     if request.method == "POST":
         img = request.files["my_image"]
         img_path = os.path.join(app.root_path, "static", img.filename)
         img.save(img_path)
-        predicted_class_info, confidence, suggestion = predict_label_with_description(img_path)
-        return render_template("index.html", 
-                               predicted_class_info=predicted_class_info, 
-                               confidence=confidence, 
-                               img_path=img.filename,
-                               suggestion=suggestion)
+        predicted_class_info, confidence = predict_label_with_description(img_path)
+        return render_template("index.html", predicted_class_info=predicted_class_info, confidence=confidence, img_path=img.filename)
+
     return render_template("index.html")
 
-
-if __name__ =='__main__':
-    app.run(debug=False, host='0.0.0.0')
+if __name__ == '__main__':
+    app.run(debug=True)
