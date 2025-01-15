@@ -44,17 +44,25 @@ After uploading the image, the application will detect the disease and display t
 ## How to Run
 
 1. Clone the repository
-2. Install the required dependencies:
+2. Download h5 from drive
+3. Install the required dependencies:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-3. Run the app:
+4. Run the app:
 
     ```bash
     python app.py
     ```
+
+## Download Model
+
+To download the model file (`.h5`), click the link below:
+
+[Download .h5 file](https://drive.google.com/file/d/1FMpUMo_f4ONrfayqgdpjwFSg7Yb-kqmC/view?usp=sharing)
+
 
 ## Contribute
 
