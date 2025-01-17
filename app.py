@@ -13,64 +13,44 @@ app = Flask(__name__)
 
 dic = {
     0: {
-        'name': 'Bacterial Blight',
-        'description': 'Bacterial Blight is caused by bacteria that can infect the cotton plant, leading to water-soaked lesions on leaves and stems.',
-        'suggestion': 'Farmers should remove infected plant parts, apply copper-based fungicides like *Bordeaux mixture*, and avoid overhead irrigation to prevent spreading. A recommended pesticide is *Streptomycin* for bacterial control.'
+        'name': 'Aphids',
+        'description': 'Aphids are small insects that can infest cotton plants. They typically occur due to favorable warm conditions and reproduce rapidly. To manage aphid infestations, consider early detection, natural predators like ladybugs and parasitic wasps, beneficial insects, insecticidal soaps or oils, and chemical pesticides as a last resort. Additionally, practices like crop rotation, weed control, and monitoring weather conditions can help prevent aphid-related issues in cotton farming.'
     },
     1: {
-        'name': 'Curl Virus',
-        'description': 'Curl Virus is a viral infection that causes leaves to curl and yellow, reducing the plant\'s ability to photosynthesize effectively.',
-        'suggestion': 'Farmers should remove and destroy infected plants, control aphid populations with insecticides like *Imidacloprid* or *Acetamiprid*, and consider using resistant varieties if available.'
+        'name': 'Armyworms',
+        'description': 'Armyworms are destructive pests affecting cotton crops. These caterpillars can rapidly devour leaves and damage cotton plants. They are known for their voracious feeding habits and can lead to significant yield losses. To manage armyworm infestations, use integrated pest management strategies, including natural enemies, biological control agents, and selective insecticides when necessary. Monitoring and early intervention are key to preventing extensive damage to cotton fields.'
     },
     2: {
-        'name': 'Healthy Leaf',
-        'description': 'Healthy leaves are bright green and free from any visible disease symptoms, indicating the plant is growing well.',
-        'suggestion': 'Farmers should continue with regular crop maintenance practices, such as watering, fertilizing, and monitoring for pests. No specific treatment is necessary for healthy leaves.'
+        'name': 'Bacterial Blight',
+        'description': 'Bacterial blight is a cotton disease caused by bacterial pathogens. It manifests as dark lesions on leaves and can lead to defoliation, reducing cotton yield and quality. Managing bacterial blight involves planting disease-resistant cotton varieties, practicing crop rotation, and using copper-based fungicides when necessary. Proper field sanitation and avoiding excessive moisture can also help prevent the disease.'
     },
     3: {
-        'name': 'Herbicide Growth Damage',
-        'description': 'Herbicide damage occurs when herbicides are sprayed incorrectly, leading to stunted growth or leaf deformities.',
-        'suggestion': 'Farmers should avoid applying herbicides during windy conditions and follow proper instructions to prevent damage to non-target plants. There are no specific medicines for herbicide damage; focus on proper herbicide application techniques.'
+        'name': 'Cotton Boll Rot',
+        'description': 'Cotton boll rot is a fungal disease that damages cotton bolls, leading to premature cotton fiber release and reduced yield. It is managed by using disease-resistant cotton varieties and maintaining proper plant spacing to reduce humidity. Fungicides can be applied if needed, but prevention is key.'
     },
     4: {
-        'name': 'Leaf Hopper Jassids',
-        'description': 'Leaf hopper Jassids are insects that feed on plant sap, leading to yellowing and stunting of plant growth.',
-        'suggestion': 'Farmers should apply insecticides like *Dimethoate* or *Thiamethoxam* to control leaf hopper populations. Beneficial insects such as spiders and ladybugs can also help manage pest populations naturally.'
+        'name': 'Curl Virus',
+        'description': 'Curl virus, also known as Cotton Leaf Curl Disease, is a viral infection that affects cotton plants. It is transmitted by whiteflies and causes the leaves of cotton plants to curl and become deformed. This disease can significantly reduce cotton yields. Control measures include using virus-resistant cotton varieties, managing whitefly populations, and practicing crop rotation.'
     },
     5: {
-        'name': 'Leaf Redding',
-        'description': 'Leaf redding is caused by various factors like nutrient deficiency or certain diseases, resulting in red or purple discoloration of the leaves.',
-        'suggestion': 'Farmers should ensure proper nutrient management with balanced fertilizers. If caused by disease, apply fungicides such as *Mancozeb* or *Chlorothalonil*. Soil testing can help determine any deficiencies.'
+        'name': 'Fusarium Wilt',
+        'description': 'Fusarium wilt is a plant disease caused by the Fusarium fungus. It affects various crops, including cotton. The fungus infects the plant\'s vascular system, leading to symptoms such as wilting, yellowing of leaves, and stunted growth. Fusarium wilt can result in reduced crop yields and quality. Prevention methods include using disease-resistant cotton varieties, practicing crop rotation, and ensuring proper soil health and drainage.'
     },
     6: {
-        'name': 'Leaf Variegation',
-        'description': 'Leaf variegation occurs when the leaves show irregular patterns of light and dark green, often due to viral infections or environmental stress.',
-        'suggestion': 'Farmers should inspect plants for pests, diseases, and nutrient imbalances and remove any affected leaves. Use insecticides like *Imidacloprid* for controlling aphids and other pest vectors that spread the virus.'
+        'name': 'Green Cotton Boll',
+        'description': 'Green cotton boll refers to the stage in the cotton plant\'s growth cycle when cotton bolls, which contain cotton fibers, are still immature and green in color. At this stage, the cotton fibers inside the boll are not fully developed or ready for harvesting. It is crucial for cotton growers to monitor the maturation of the cotton bolls and pick them at the right time to obtain high-quality cotton fibers for textile production. Harvesting green cotton bolls can result in lower fiber quality and reduced yields. Proper timing of cotton boll harvesting is essential for the success of cotton farming.'
     },
     7: {
-        'name': 'Aphids',
-        'description': 'Aphids are small insects that suck sap from plants, causing wilting, yellowing, and stunted growth.',
-        'suggestion': 'Farmers can control aphid populations by introducing beneficial insects like ladybugs or by applying insecticidal soap or neem oil. Common insecticides include *Acetamiprid*, *Malathion*, and *Imidacloprid*.'
+        'name': 'Healthy',
+        'description': 'The term "healthy" in the context of cotton farming refers to cotton plants that are free from diseases, pests, and other stressors. Healthy cotton plants exhibit vigorous growth, vibrant green foliage, and well-developed cotton bolls. They are able to reach their full yield potential, producing high-quality cotton fibers that are suitable for various industrial and textile applications. Maintaining the health of cotton crops often involves regular monitoring, proper irrigation, timely fertilization, and effective pest and disease management practices to ensure a successful and productive cotton harvest.'
     },
     8: {
-        'name': 'Army Worm',
-        'description': 'Army worms are larvae of moths that can cause extensive damage to cotton plants by feeding on leaves and fruit.',
-        'suggestion': 'Farmers should monitor for signs of army worms and apply appropriate insecticides like *Chlorpyrifos* or *Spinosad* if infestation levels are high. Early intervention is key.'
+        'name': 'Powdery Mildew',
+        'description': 'Powdery mildew is a fungal disease affecting cotton. It appears as white powdery spots on leaves and can reduce photosynthesis and cotton quality. Management includes fungicides, proper spacing, resistant varieties, crop rotation, monitoring, and disease forecasting.'
     },
     9: {
-        'name': 'Fusarium Wilt',
-        'description': 'Fusarium wilt is a fungal disease that causes yellowing and wilting of the leaves, often leading to plant death.',
-        'suggestion': 'Farmers should rotate crops to break the disease cycle, remove infected plants, and apply fungicides such as *Fluopyram* or *Thiophanate-methyl* to manage the spread of the fungus.'
-    },
-    10: {
         'name': 'Target Spot',
-        'description': 'Target spot is a fungal disease that causes dark spots with concentric rings on the leaves, which can lead to premature leaf drop.',
-        'suggestion': 'Farmers should practice good crop rotation, remove infected leaves, and apply fungicides such as *Azoxystrobin* or *Tebuconazole* to reduce the impact of target spot.'
-    },
-    11: {
-        'name': 'Powdery Mildew',
-        'description': 'Powdery mildew is a fungal disease characterized by a white, powdery coating on the surface of leaves and stems.',
-        'suggestion': 'Farmers should apply fungicides like *Sulfur* or *Myclobutanil*, increase airflow around the plants, and remove infected plant material to control the spread of powdery mildew.'
+        'description': 'Target spot is a fungal disease in cotton. It causes circular lesions on leaves with a distinctive target-like appearance. It can reduce cotton yield and quality. Control measures include fungicides, crop rotation, and planting resistant varieties. Proper irrigation and field hygiene are also essential for management.'
     }
 }
 
