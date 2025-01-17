@@ -3,6 +3,10 @@
 Welcome to the **Cotton Leaf Disease Detection Web App**! This web application helps in detecting diseases in cotton plants by analyzing images of cotton leaves. Below are the details of different sections of the app, including screenshots.
 
 ## Cover Page
+![Cover Page](https://github.com/user-attachments/assets/dc13c743-a969-48a4-96a7-9557308443cb)
+
+
+
 
 ![Cover Page](https://github.com/user-attachments/assets/f01f802a-86df-42f8-8369-6c3d99bbcf6b)
 
