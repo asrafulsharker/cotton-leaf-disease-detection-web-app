@@ -6,13 +6,11 @@ Welcome to the **Cotton Leaf Disease Detection Web App**! This web application h
 ![Cover Page](https://github.com/user-attachments/assets/dc13c743-a969-48a4-96a7-9557308443cb)
 
 
-
-
-![Cover Page](https://github.com/user-attachments/assets/f01f802a-86df-42f8-8369-6c3d99bbcf6b)
-
 ## Upload Page
 
 The upload page allows users to easily upload images of cotton leaves for disease detection.
+
+![Upload Page](https://github.com/user-attachments/assets/4af9f228-19a2-4868-b1c3-0472d47c2c8b)
 
 ![Upload Page](https://github.com/user-attachments/assets/5a6e3467-41bc-4be3-9343-da55f5cab396)
 
