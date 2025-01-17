@@ -12,7 +12,6 @@ The upload page allows users to easily upload images of cotton leaves for diseas
 
 ![Upload Page](https://github.com/user-attachments/assets/4af9f228-19a2-4868-b1c3-0472d47c2c8b)
 
-![Upload Page](https://github.com/user-attachments/assets/5a6e3467-41bc-4be3-9343-da55f5cab396)
 
 ## Detection Page
 
